@@ -1,7 +1,6 @@
 import pymorphy2
 from nltk.corpus import stopwords
 import re
-import os
 
 
 morph = pymorphy2.MorphAnalyzer()
@@ -9,16 +8,6 @@ morph = pymorphy2.MorphAnalyzer()
 
 def get_lemma(word):
     return morph.parse(word)[0].normal_form
-
-
-def delete_files_in_folder(folder_path):
-    for filename in os.listdir(folder_path):
-        file_path = os.path.join(folder_path, filename)
-        try:
-            if os.path.isfile(file_path):
-                os.remove(file_path)
-        except Exception as e:
-            print(f'Ошибка при удалении файла {file_path}. {e}')
 
 
 def get_stop_words():
@@ -57,8 +46,6 @@ def tokenize(text):
 
 
 if __name__ == '__main__':
-    delete_files_in_folder('lemmatized_tokens/')
-
     stop_words = get_stop_words()
 
     for i in range(0, 100):
