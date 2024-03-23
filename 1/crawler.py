@@ -50,13 +50,13 @@ def parse_pages(url: str, pages_left=100) -> Tuple[List[Tuple[str, str]], int]:
         resulting_pages.append((url, cleaned_text))
         print(f"Added page {url} to res pages. Res pages len: {len(resulting_pages)}")
 
-    visited_pages[url] = links
+    visited_pages[url] = True
 
     for link in links:
         if pages_parsed == pages_left:
             return resulting_pages, pages_parsed
 
-        if link not in visited_pages.keys():
+        if link not in visited_pages:
             html_content = parse_page(link)
             cleaned_text = cleaner.clean_html(html_content)
             cleaned_text = re.sub(CLEANR, '', cleaned_text)
@@ -66,6 +66,6 @@ def parse_pages(url: str, pages_left=100) -> Tuple[List[Tuple[str, str]], int]:
                 resulting_pages.append((link, cleaned_text))
                 print(f"Added page {link} to res pages. Res pages len: {len(resulting_pages)}")
 
-            visited_pages[url] = links
+            visited_pages[link] = True
 
     return resulting_pages, pages_parsed
