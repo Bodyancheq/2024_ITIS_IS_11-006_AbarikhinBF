@@ -27,7 +27,7 @@ def main(args: List[str]) -> Optional[str]:
             curr_page += 1
 
         for page_url, page in pages:
-            with open(f"file_{j}", "w", encoding="utf-8") as outfile:
+            with open(f"pages/file_{j}", "w", encoding="utf-8") as outfile:
                 outfile.write(page)
 
             with open("index.txt", "a", encoding="utf-8") as indexfile:
