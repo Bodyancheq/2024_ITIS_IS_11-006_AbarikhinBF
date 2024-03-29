@@ -30,7 +30,7 @@ def form_dictionary():
                 dictionary[word].append(i)
 
     for key in dict(sorted(dictionary.items())):
-        with open('dictionary.txt', 'w',  encoding="utf-8") as file:
+        with open('dictionary.txt', 'a',  encoding="utf-8") as file:
             file.write(f"{key}: {dictionary[key]}\n")
 
     return dictionary
