@@ -47,10 +47,10 @@ def main():
 
     tf_dict = {"Term": words}
     tfidf_dict = {"Term": words}
-    for id, words in id_to_words.items():
+    for id, wordlist in id_to_words.items():
         tfs = []
         for w in words:
-            tf = words.count(w) / max(1, len(words))
+            tf = wordlist.count(w) / max(1, len(wordlist))
             tfs.append(tf)
         tf_dict[id] = [round(x, 6) for x in tfs]
         tfidf_dict[id] = [round(x*y, 6) for x, y in zip(tfs, idfs)]

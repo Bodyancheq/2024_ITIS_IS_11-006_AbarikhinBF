@@ -10,7 +10,7 @@ from urllib.parse import urlparse, urljoin
 
 cleaner = Cleaner(javascript=True, style=True)
 
-CLEANR = re.compile('<(.|\n)*?>')
+CLEANR = re.compile(r"<[^>]*>")
 CLEAN_NEWL = re.compile('\n\t*(\n\t*)+')
 REQUIRED_WORDS = 1000
 
@@ -43,7 +43,7 @@ def parse_pages(url: str, pages_left=100) -> Tuple[List[Tuple[str, str]], int]:
     links = [link.scheme + "://" + link.netloc + link.path for link in links]
 
     cleaned_text = cleaner.clean_html(html_content)
-    cleaned_text = re.sub(CLEANR, '', cleaned_text)
+    cleaned_text = re.sub(CLEANR, ' ', cleaned_text)
     cleaned_text = re.sub(CLEAN_NEWL, '\n', cleaned_text)
     if len(cleaned_text.split()) >= 1000:
         pages_parsed += 1
