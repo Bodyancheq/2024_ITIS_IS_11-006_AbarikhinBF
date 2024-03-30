@@ -1,4 +1,3 @@
-import numpy as np
 import pandas as pd
 import typer
 
@@ -28,7 +27,7 @@ def main(args: list[str]):
     results = search(tdidf_table, args)
 
     res_msg = f"Query: {' '.join(args)}\n\n" + "Search results:\n" + "\n".join(f"Документ {doc[0]} - {doc[1]}" for doc in results[:15])
-    with open("search_results.txt", "w", encoding="utf-8") as file:
+    with open("search_results.txt", "a", encoding="utf-8") as file:
         file.write(res_msg)
         print(res_msg)
 
